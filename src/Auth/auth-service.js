@@ -8,9 +8,11 @@ const AuthService = {
             .first()
     },
     comparePasswords(password, hash) {
+        console.log(password, hash)
         return bcrypt.compare(password, hash)
     },
     createJwt(subject, payload) {
+        console.log(config.JWT_SECRET)
         return jwt.sign(payload, config.JWT_SECRET, {
             subject,
             algorithm: 'HS256',
