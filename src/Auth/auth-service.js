@@ -3,22 +3,22 @@ const jwt = require('jsonwebtoken')
 const config = require('../config')
 const AuthService = {
     getUserWithUserName(db, user_name) {
+        console.log(user_name)
         return db('thingful_users')
             .where({ user_name })
             .first()
     },
     comparePasswords(password, hash) {
-        console.log(password, hash)
         return bcrypt.compare(password, hash)
     },
     createJwt(subject, payload) {
-        console.log(config.JWT_SECRET)
         return jwt.sign(payload, config.JWT_SECRET, {
             subject,
             algorithm: 'HS256',
         })
     },
     verifyJWT(token) {
+        console.log('token', token)
         return jwt.verify(token, config.JWT_SECRET, {
             algorithms: ['HS256'],
         })

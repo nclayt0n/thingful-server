@@ -18,7 +18,6 @@ authRouter
                 loginUser.user_name
             )
             .then(dbUser => {
-                console.log(dbUser)
                 if (!dbUser)
                     return res.status(400).json({
                         error: 'Incorrect user_name or password',
